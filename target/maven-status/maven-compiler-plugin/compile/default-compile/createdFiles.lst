@@ -1,7 +1,0 @@
-net\francesbagual\github\eip\pattern\pointtopoint\MyJMSProducer.class
-net\francesbagual\github\eip\pattern\pointtopoint\PointToPointMain.class
-net\francesbagual\github\eip\pattern\pointtopoint\mdb\PointToPointMDB.class
-net\francesbagual\github\eip\pattern\publishsubscribe\servlet\PublishSubscribeServlet.class
-net\francesbagual\github\eip\pattern\pointtopoint\MyJMSConsumer.class
-net\francesbagual\github\eip\pattern\pointtopoint\servlet\PointToPointServlet.class
-net\francesbagual\github\eip\pattern\publishsubscribe\mdb\PublishSubscribeMDB.class
