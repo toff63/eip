@@ -1,4 +1,4 @@
-eip
+Entreprise Integration Patterns with JMS 2 and WildFly
 ===
 
 Code implementing or using Entreprise Integration Patterns
