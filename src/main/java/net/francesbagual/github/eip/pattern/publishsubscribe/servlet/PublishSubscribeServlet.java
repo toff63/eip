@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 						destinationName = "publishsubscribe"
 				)
 		})
-@WebServlet("/publishsubscribe/client")
+@WebServlet("/publishsubscribe")
 public class PublishSubscribeServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
