@@ -1,5 +1,9 @@
 package net.francesbagual.github.eip.pattern.common;
 
-public class Header {
+import java.io.Serializable;
+
+public class Header implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 }
