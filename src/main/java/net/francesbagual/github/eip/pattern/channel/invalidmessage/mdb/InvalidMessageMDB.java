@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.invalidmessage.mdb;
+package net.francesbagual.github.eip.pattern.channel.invalidmessage.mdb;
 
 import java.util.logging.Logger;
 
@@ -9,7 +9,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
-import net.francesbagual.github.eip.pattern.invalidmessage.message.InvalidMessage;
+import net.francesbagual.github.eip.pattern.channel.invalidmessage.message.InvalidMessage;
 
 @MessageDriven(name = "InvalidMessageMDB", activationConfig = {
 		@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/invalidmessage"),

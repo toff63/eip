@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.publishsubscribe.mdb;
+package net.francesbagual.github.eip.pattern.channel.publishsubscribe.mdb;
 
 import java.util.logging.Logger;
 

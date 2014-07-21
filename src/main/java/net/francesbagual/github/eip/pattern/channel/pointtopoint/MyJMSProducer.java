@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.pointtopoint;
+package net.francesbagual.github.eip.pattern.channel.pointtopoint;
 
 import javax.jms.JMSContext;
 import javax.jms.Queue;

@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.invalidmessage.servlet;
+package net.francesbagual.github.eip.pattern.channel.invalidmessage.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.francesbagual.github.eip.pattern.datatypechannel.message.Query;
+import net.francesbagual.github.eip.pattern.channel.datatype.message.Query;
 
 @JMSDestinationDefinitions(
 		value = {

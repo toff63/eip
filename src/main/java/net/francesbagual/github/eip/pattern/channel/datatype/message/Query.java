@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.datatypechannel.message;
+package net.francesbagual.github.eip.pattern.channel.datatype.message;
 
 import net.francesbagual.github.eip.pattern.common.EIPMessage;
 

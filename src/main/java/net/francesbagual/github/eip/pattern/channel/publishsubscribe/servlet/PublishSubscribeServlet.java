@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.publishsubscribe.servlet;
+package net.francesbagual.github.eip.pattern.channel.publishsubscribe.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

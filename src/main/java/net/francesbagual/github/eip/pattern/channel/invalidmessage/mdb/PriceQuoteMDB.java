@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.invalidmessage.mdb;
+package net.francesbagual.github.eip.pattern.channel.invalidmessage.mdb;
 
 import java.util.logging.Logger;
 
@@ -15,8 +15,8 @@ import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 
-import net.francesbagual.github.eip.pattern.datatypechannel.message.PriceQuote;
-import net.francesbagual.github.eip.pattern.invalidmessage.message.InvalidMessage;
+import net.francesbagual.github.eip.pattern.channel.datatype.message.PriceQuote;
+import net.francesbagual.github.eip.pattern.channel.invalidmessage.message.InvalidMessage;
 
 @JMSDestinationDefinitions(
 		value = {

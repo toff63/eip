@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.datatypechannel.mdb;
+package net.francesbagual.github.eip.pattern.channel.datatype.mdb;
 
 import java.util.logging.Logger;
 
@@ -9,7 +9,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
-import net.francesbagual.github.eip.pattern.datatypechannel.message.Query;
+import net.francesbagual.github.eip.pattern.channel.datatype.message.Query;
 
 @MessageDriven(name = "QueryMDB", activationConfig = {
 		@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/query"),

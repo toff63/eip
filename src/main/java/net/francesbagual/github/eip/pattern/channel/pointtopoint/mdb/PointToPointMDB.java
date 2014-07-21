@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.pointtopoint.mdb;
+package net.francesbagual.github.eip.pattern.channel.pointtopoint.mdb;
 
 import java.util.logging.Logger;
 

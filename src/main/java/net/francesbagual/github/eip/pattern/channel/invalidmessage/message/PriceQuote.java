@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.invalidmessage.message;
+package net.francesbagual.github.eip.pattern.channel.invalidmessage.message;
 
 import java.io.Serializable;
 
