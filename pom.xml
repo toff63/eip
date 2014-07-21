@@ -3,8 +3,8 @@
 	<groupId>net.francesbagual.github</groupId>
 	<artifactId>eip</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
-    
+	<packaging>war</packaging>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -22,6 +22,7 @@
 		<!-- maven-compiler-plugin -->
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
+		<httpclient.version>4.3.4</httpclient.version>
 	</properties>
 
 	<profiles>
@@ -115,5 +116,32 @@
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Import the JSON API to build JSON Objects -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.json</groupId>
+			<artifactId>jboss-json-api_1.0_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss WildFly -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>jaxrs-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>fluent-hc</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+
+
 	</dependencies>
 </project>
