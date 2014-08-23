@@ -14,9 +14,9 @@ import javax.jms.TextMessage;
 		@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "queue/contentbasedecho"),
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
 		@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge") })
-public class ContentBasedEchoMDB implements MessageListener {
+public class EchoMDB implements MessageListener {
 
-	private final static Logger LOGGER = Logger.getLogger(ContentBasedEchoMDB.class.toString());
+	private final static Logger LOGGER = Logger.getLogger(EchoMDB.class.toString());
 
 	@Override
 	public void onMessage(Message receivedMessage) {
@@ -24,7 +24,7 @@ public class ContentBasedEchoMDB implements MessageListener {
 			if (receivedMessage instanceof TextMessage) {
 				TextMessage msg = (TextMessage) receivedMessage;
 				String text = msg.getText();
-				LOGGER.info("ContentBasedEchoMDB received " + text);
+				LOGGER.info("EchoMDB received " + text);
 			}
 		} catch (JMSException e) {
 			throw new RuntimeException(e);

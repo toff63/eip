@@ -47,8 +47,8 @@ public class ContentBasedRouterMDB implements MessageListener {
 		try {
 			if (message instanceof TextMessage) {
 				String text = ((TextMessage) message).getText();
-				if (text.startsWith("greeting:")) context.createProducer().send(greeting, "greeting: Hello World");
-				else if (text.startsWith("echo:")) context.createProducer().send(echo, "echo: Reply me something useful :)");
+				if (text.startsWith("greeting:")) context.createProducer().send(greeting, message);
+				else if (text.startsWith("echo:")) context.createProducer().send(echo, message);
 				else context.createProducer().send(invalidMessageQueue, message);
 			}
 		} catch (JMSException exc) {
