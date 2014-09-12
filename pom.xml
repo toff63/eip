@@ -24,6 +24,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<httpclient.version>4.3.4</httpclient.version>
 		<apache.collection.version>4.0</apache.collection.version>
+		<guava.version>18.0</guava.version>
 	</properties>
 
 	<profiles>
@@ -148,6 +149,12 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>fluent-hc</artifactId>
 			<version>${httpclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 
 
