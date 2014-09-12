@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.router.agregator.mdb;
+package net.francesbagual.github.eip.pattern.router.agregator.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -95,6 +95,7 @@ public class AgregatorRouterServlet extends HttpServlet {
 		Message msg1 = context.createTextMessage(firstListOfMessages.get(i));
 		msg1.setJMSCorrelationID(firstCorrelationId);
 		msg1.setLongProperty("numberOfMessages", firstSize);
+		msg1.setLongProperty("index", i);
 		return msg1;
 	}
 

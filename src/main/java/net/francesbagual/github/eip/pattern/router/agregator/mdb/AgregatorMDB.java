@@ -1,6 +1,8 @@
 package net.francesbagual.github.eip.pattern.router.agregator.mdb;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -48,11 +50,11 @@ public class AgregatorMDB implements MessageListener {
 	@Resource(lookup = "jms/queue/invalidmessage")
 	private Queue invalidMessageQueue;
 
-	private static ConcurrentMap<String, List<String>> state = null;
+	private static ConcurrentMap<String, List<IndexedMessage>> state = null;
 
 	public AgregatorMDB() {
 		synchronized (AgregatorMDB.class) {
-			if (AgregatorMDB.state == null) AgregatorMDB.state = new ConcurrentHashMap<String, List<String>>();
+			if (AgregatorMDB.state == null) AgregatorMDB.state = new ConcurrentHashMap<String, List<IndexedMessage>>();
 		}
 	}
 
@@ -62,10 +64,11 @@ public class AgregatorMDB implements MessageListener {
 			if (message instanceof TextMessage) {
 				String correlationId = message.getJMSCorrelationID();
 				Long expectedNumberOfMessage = message.getLongProperty("numberOfMessages");
+				Long index = message.getLongProperty("index");
 				final String text = ((TextMessage) message).getText();
 				synchronized (AgregatorMDB.class) {
-					if (state.containsKey(correlationId)) updateMessageList(message, correlationId, text);
-					else createMessageList(correlationId, text);
+					if (state.containsKey(correlationId)) updateMessageList(message, correlationId, index, text);
+					else createMessageList(correlationId, index, text);
 					if (isComplete(correlationId, expectedNumberOfMessage)) context.createProducer().send(echo, aggregate(correlationId));
 				}
 
@@ -79,27 +82,31 @@ public class AgregatorMDB implements MessageListener {
 	}
 
 	@SuppressWarnings("serial")
-	private void createMessageList(String correlationId, final String text) {
-		state.put(correlationId, new ArrayList<String>() {
+	private void createMessageList(String correlationId, final Long index, final String text) {
+		state.put(correlationId, new ArrayList<IndexedMessage>() {
 			{
-				add(text);
+				add(new IndexedMessage(index, text));
 			}
 		});
 	}
 
-	private void updateMessageList(Message message, String correlationId, final String text) {
-		List<String> originalMessages = null;
-		List<String> destinationMessages = null;
-		originalMessages = state.get(correlationId);
-		destinationMessages = new ArrayList<String>(originalMessages);
-		destinationMessages.add(text);
+	private void updateMessageList(Message message, String correlationId, Long index, final String text) {
+		List<IndexedMessage> destinationMessages = state.get(correlationId);
+		destinationMessages.add(new IndexedMessage(index, text));
 		state.put(correlationId, destinationMessages);
 	}
 
 	private String aggregate(String correlationId) {
-		return Joiner.on(" ").join(state.get(correlationId));
+		return Joiner.on(" ").join(resequence(correlationId));
 	}
 
+	private List<String> resequence(String correlationId){
+		List<IndexedMessage> orderedMessages = new ArrayList<>(state.get(correlationId));
+		Collections.sort(orderedMessages);
+		List<String> result = new LinkedList<>();
+		for(IndexedMessage indexedMessage : orderedMessages)result.add(indexedMessage.text);
+		return result;
+	}
 	private Boolean isComplete(String correlationId, Long expectedNumberOfMessage) {
 		return state.containsKey(correlationId) ? state.get(correlationId).size() >= expectedNumberOfMessage : true;
 	}
