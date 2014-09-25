@@ -7,6 +7,7 @@ import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
 import javax.jms.TextMessage;
 
 
@@ -25,6 +26,9 @@ public class EchoMDB implements MessageListener {
 				TextMessage msg = (TextMessage) receivedMessage;
 				String text = msg.getText();
 				LOGGER.info("EchoMDB received " + text);
+			} else if (receivedMessage instanceof ObjectMessage){
+				net.francesbagual.github.eip.pattern.message.Message<Object> msg = (net.francesbagual.github.eip.pattern.message.Message<Object>)((ObjectMessage) receivedMessage).getObject();
+				LOGGER.info(msg.body().toString());
 			}
 		} catch (JMSException e) {
 			throw new RuntimeException(e);
