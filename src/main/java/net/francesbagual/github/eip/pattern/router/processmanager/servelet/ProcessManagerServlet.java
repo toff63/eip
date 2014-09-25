@@ -1,4 +1,4 @@
-package net.francesbagual.github.eip.pattern.router.routingslip.servlet;
+package net.francesbagual.github.eip.pattern.router.processmanager.servelet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,39 +18,39 @@ import javax.servlet.http.HttpServletResponse;
 @JMSDestinationDefinitions(
 		value = {
 				@JMSDestinationDefinition(
-						name = "jms/queue/routerslip",
+						name = "jms/queue/processmanagerhello",
 						interfaceName = "javax.jms.Queue",
-						destinationName = "routerslip"
+						destinationName = "processmanagerhello"
 				),
 				@JMSDestinationDefinition(
-						name = "jms/queue/routersliphello",
+						name = "jms/queue/processmanagerfourtytwo",
 						interfaceName = "javax.jms.Queue",
-						destinationName = "routersliphello"
+						destinationName = "processmanagerfourtytwo"
 				),
 				@JMSDestinationDefinition(
-						name = "jms/queue/routerslipfourtytwo",
+						name = "jms/queue/processmanager",
 						interfaceName = "javax.jms.Queue",
-						destinationName = "routerslipfourtytwo"
+						destinationName = "processmanager"
 				)
 		})
-@WebServlet("/router/routerslip")
-public class RoutingSlipServlet extends HttpServlet {
 
+@WebServlet("/router/processmanager")
+public class ProcessManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private JMSContext context;
 
-	@Resource(lookup = "jms/queue/routerslip")
+	@Resource(lookup = "jms/queue/processmanager")
 	private Queue router;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
-		out.write("<h1>Slip Router</h1>");
+		out.write("<h1>Process Manager Router</h1>");
 		try {
-			out.write("<p>Sending one message to a Router slip. It will define a path going through 2 MDB and ending in an Echo MDB</p>");
+			out.write("<p>Sending one message to a Process Manager Router. It will make the message go through hello, then 42 and finaly to echo so we can see the result in the console. The message always get back to the process manager, so it decides which destination is next.</p>");
 			context.createProducer()
 					.send(router, "what is the meaning of Life?");
 			out.write("<p><i>Go to your WildFly Server console or Server log to see the result of messages processing</i></p>");
