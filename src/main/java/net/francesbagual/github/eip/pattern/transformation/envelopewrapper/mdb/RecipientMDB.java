@@ -28,6 +28,7 @@ public class RecipientMDB implements MessageListener {
 				String text = msg.getText();
 				LOGGER.info("EchoMDB received " + text);
 			} else if (receivedMessage instanceof ObjectMessage){
+				@SuppressWarnings("unchecked")
 				net.francesbagual.github.eip.pattern.message.Message<Object> msg = (net.francesbagual.github.eip.pattern.message.Message<Object>)((ObjectMessage) receivedMessage).getObject();
 				LOGGER.info(msg.body().toString());
 			}
